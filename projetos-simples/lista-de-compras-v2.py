@@ -23,10 +23,11 @@ while True:
             print("")
         else:
             lista.append(item)
+            print(f"{item} foi adicionado à sua lista com sucesso!")
             print("")
         #adicionar outro item
         while True:
-            print("Adicionar outro?")
+            print("Adicionar outro? (sim ou não)")
             confirmacao = input(">> ").strip().lower()
             #se for adicionar outro item
             if confirmacao == "sim":
@@ -39,11 +40,16 @@ while True:
                     print("")
                 else:
                     lista.append(item)
+                    print(f"{item} adicionado à sua lista com sucesso!")
                     print("")
             #se não for adicionar outro item
-            else:
+            elif confirmacao == "nao" or confirmacao == "não":
                 print("")
                 break
+            #se a saida for indesejada
+            else:
+                print("")
+                print(f"'{confirmacao}' não é uma opção!")
     #Opção 2
     elif numero == "2":
         #verificar se tem algo na lista
@@ -56,9 +62,19 @@ while True:
             item = input(">> ").strip().lower()
             #verificar se o item está na lista
             if item in lista:
-                lista.remove(item)
-                print("Item removido!")
                 print("")
+                print(f"Tem certeza que deseja remover {item} da sua lista?")
+                confirmacao = input(">> ").strip().lower()
+                if confirmacao == "sim":
+                    lista.remove(item)
+                    print("Item removido!")
+                    print("")
+                elif confirmacao == "não" or confirmacao == "nao":
+                    print(f"{item} não foi removido!")
+                    print("")
+                else:
+                    print("Confirmação inválida!")
+                    print("")
             else:
                 print("Item não encontrado!")
                 print("")
@@ -83,13 +99,18 @@ while True:
     #Opção 4
     elif numero == "4":
         #confirmacao de saída
-        print("")
-        print("Tem certeza que deseja sair?")
-        confirmacao = input(">> ").strip().lower()
-        if confirmacao == "sim":
-            break
-        else:
+        while True:
             print("")
+            print("Tem certeza que deseja sair?")
+            confirmacao = input(">> ").strip().lower()
+            if confirmacao == "sim":
+                exit()
+            elif confirmacao == "não" or confirmacao == "nao":
+                print("")
+                break
+            else:
+                print(f"'{confirmacao}' não é uma opção!")
+                print("")
     #Se a opção não existir
     else:
         print("Número desconhecido!")
